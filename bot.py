@@ -4,7 +4,7 @@ from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 
 # Токен бота и настройки
-BOT_TOKEN = "8191881269:AAHHU-0UJ0dyU1stmhQpvNnuru3kFjiOM51"
+BOT_TOKEN = "8191881269:AAHHU-0UJ0dyU1stmhQpvNnuru3kFjiOM5I"
 ADMIN_USER_ID = int(os.getenv("ADMIN_USER_ID") or 7945088917)  # ЗАМЕНИ НА СВОЙ ID В TELEGRAM
 
 # Параметры подключения к PostgreSQL
