@@ -5,7 +5,7 @@ from telegram.ext import Application, CommandHandler, MessageHandler, filters, C
 
 # Токен бота и настройки
 BOT_TOKEN = "8191881269:AAHHU-0UJ0dyU1stmhQpvNnuru3kFjiOM51"
-ADMIN_USER_ID = 7945088917  # ЗАМЕНИ НА СВОЙ ID В TELEGRAM
+ADMIN_USER_ID = int(os.getenv("ADMIN_USER_ID") or 7945088917)  # ЗАМЕНИ НА СВОЙ ID В TELEGRAM
 
 # Параметры подключения к PostgreSQL
 DB_CONFIG = {
@@ -366,16 +366,16 @@ def main():
     app.add_handler(CommandHandler("unban", unban_command))
     app.add_handler(CommandHandler("myid", get_my_id))
     
-    # Обработчики сообщений
+    # Обработчики сообщений - ИСПРАВЛЕННЫЕ ФИЛЬТРЫ
     app.add_handler(MessageHandler(
-        (filters.TEXT | filters.PHOTO | filters.DOCUMENT | filters.STICKER | 
+        (filters.TEXT | filters.PHOTO | filters.ATTACHMENT | filters.Sticker.ALL | 
          filters.VOICE | filters.VIDEO | filters.AUDIO) & 
         ~filters.COMMAND & filters.ChatType.PRIVATE, 
         handle_user_message
     ))
     
     app.add_handler(MessageHandler(
-        (filters.TEXT | filters.PHOTO | filters.DOCUMENT | filters.STICKER | 
+        (filters.TEXT | filters.PHOTO | filters.ATTACHMENT | filters.Sticker.ALL | 
          filters.VOICE | filters.VIDEO | filters.AUDIO) & 
         filters.REPLY, 
         handle_admin_reply
